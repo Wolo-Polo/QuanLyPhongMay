@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import object.May;
+
 /**
  *
  * @author Truong
@@ -196,6 +200,11 @@ public class QuanLyMay extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jButton5.setText("Làm mới");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Tìm kiếm");
 
@@ -279,6 +288,12 @@ public class QuanLyMay extends javax.swing.JFrame {
         new Home().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        List<May> dsMay= new ArrayList<>();
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
