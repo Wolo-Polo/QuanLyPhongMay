@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Truong
  */
-public class MySQLConnection {
+public class DBConnection {
     public static Connection getConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -23,7 +23,7 @@ public class MySQLConnection {
             System.out.println("Ket noi den CSDL thanh cong!");
             return conn;
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return null;

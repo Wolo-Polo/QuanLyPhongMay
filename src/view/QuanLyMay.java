@@ -105,7 +105,7 @@ public class QuanLyMay extends javax.swing.JFrame {
 
         jButton3.setText("Xóa");
 
-        jButton4.setText("Thoát");
+        jButton4.setText("Quay lại");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -282,10 +282,11 @@ public class QuanLyMay extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new Home().setVisible(true);
+        new Quanlyphongmay().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 

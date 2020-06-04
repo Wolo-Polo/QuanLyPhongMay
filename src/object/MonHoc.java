@@ -12,16 +12,18 @@ package object;
 public class MonHoc {
     private String maMonHoc;
     private String tenMonHoc;
-    private PhanMem phanMem;
+    private String tenPhanMem;
+    private String yeuCauCauHinh;
     private String ghiChu;
 
     public MonHoc() {
     }
 
-    public MonHoc(String maMonHoc, String tenMonHoc, PhanMem phanMem, String ghiChu) {
+    public MonHoc(String maMonHoc, String tenMonHoc, String tenPhanMem, String yeuCauCauHinh, String ghiChu) {
         this.maMonHoc = maMonHoc;
         this.tenMonHoc = tenMonHoc;
-        this.phanMem = phanMem;
+        this.tenPhanMem = tenPhanMem;
+        this.yeuCauCauHinh = yeuCauCauHinh;
         this.ghiChu = ghiChu;
     }
 
@@ -41,12 +43,20 @@ public class MonHoc {
         this.tenMonHoc = tenMonHoc;
     }
 
-    public PhanMem getPhanMem() {
-        return phanMem;
+    public String getTenPhanMem() {
+        return tenPhanMem;
     }
 
-    public void setPhanMem(PhanMem phanMem) {
-        this.phanMem = phanMem;
+    public void setTenPhanMem(String tenPhanMem) {
+        this.tenPhanMem = tenPhanMem;
+    }
+
+    public String getYeuCauCauHinh() {
+        return yeuCauCauHinh;
+    }
+
+    public void setYeuCauCauHinh(String yeuCauCauHinh) {
+        this.yeuCauCauHinh = yeuCauCauHinh;
     }
 
     public String getGhiChu() {
@@ -56,8 +66,6 @@ public class MonHoc {
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
-    
-    
-    
-    
+
+   
 }

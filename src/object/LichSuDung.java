@@ -14,16 +14,20 @@ import java.util.Date;
 public class LichSuDung {
     private PhongMay phongMay;
     private GiaoVien giaoVien;
-    private Date ngaySuDung;
+    private MonHoc monHoc;
+    private Date batDau;
+    private Date ketThuc;
     private String ghiChu;
 
     public LichSuDung() {
     }
 
-    public LichSuDung(PhongMay phongMay, GiaoVien giaoVien, Date ngaySuDung, String ghiChu) {
+    public LichSuDung(PhongMay phongMay, GiaoVien giaoVien, MonHoc monHoc, Date batDau, Date ketThuc, String ghiChu) {
         this.phongMay = phongMay;
         this.giaoVien = giaoVien;
-        this.ngaySuDung = ngaySuDung;
+        this.monHoc = monHoc;
+        this.batDau = batDau;
+        this.ketThuc = ketThuc;
         this.ghiChu = ghiChu;
     }
 
@@ -43,12 +47,28 @@ public class LichSuDung {
         this.giaoVien = giaoVien;
     }
 
-    public Date getNgaySuDung() {
-        return ngaySuDung;
+    public MonHoc getMonHoc() {
+        return monHoc;
     }
 
-    public void setNgaySuDung(Date ngaySuDung) {
-        this.ngaySuDung = ngaySuDung;
+    public void setMonHoc(MonHoc monHoc) {
+        this.monHoc = monHoc;
+    }
+
+    public Date getBatDau() {
+        return batDau;
+    }
+
+    public void setBatDau(Date batDau) {
+        this.batDau = batDau;
+    }
+
+    public Date getKetThuc() {
+        return ketThuc;
+    }
+
+    public void setKetThuc(Date ketThuc) {
+        this.ketThuc = ketThuc;
     }
 
     public String getGhiChu() {
@@ -58,7 +78,6 @@ public class LichSuDung {
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
-    
-    
+
     
 }
