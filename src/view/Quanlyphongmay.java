@@ -66,6 +66,11 @@ public class Quanlyphongmay extends javax.swing.JFrame {
         jButton2.setText("Thêm");
 
         jButton3.setText("Xóa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Sửa");
 
@@ -197,6 +202,14 @@ public class Quanlyphongmay extends javax.swing.JFrame {
         new Home().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String sql1="";
+        String sql2="";
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     
 

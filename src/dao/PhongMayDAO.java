@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.PhongMay;
-import service.MayService;
 
 /**
  *
@@ -80,9 +79,73 @@ public class PhongMayDAO extends AbstractDAO{
         return null;
     }
     
+
+
+    @Override
+    public int insert(Object object) {
+        try {
+            PhongMay phongMay= (PhongMay) object;
+            String sql="insert into phongmay values (?, ?, ?, ?)";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            preparedStatement.setString(1, phongMay.getMaPhongMay());
+            preparedStatement.setString(2, phongMay.getViTri());
+            preparedStatement.setString(3, phongMay.getTinhTrang());
+            preparedStatement.setString(4, phongMay.getGhiChu());
+            
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PhongMayDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public int delete(Object object) {
+        try {
+            PhongMay phongMay= (PhongMay) object;
+            String sql="delete from phongmay where maphongmay=?";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            preparedStatement.setString(1, phongMay.getMaPhongMay());
+            
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PhongMayDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return 0;
+    }
+
+    @Override
+    public int update(Object object) {
+        try {
+            PhongMay phongMay= (PhongMay) object;
+            String sql="update phongmay set vitri=?, tinhtrang=?, ghichu=? where maphongmay=?";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            preparedStatement.setString(4, phongMay.getMaPhongMay());
+            preparedStatement.setString(1, phongMay.getViTri());
+            preparedStatement.setString(2, phongMay.getTinhTrang());
+            preparedStatement.setString(3, phongMay.getGhiChu());
+            
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PhongMayDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;    
+    }
+    
 //    public static void main(String[] args) {
-//        PhongMayDAO phongMayDAO= new PhongMayDAO();
+//        PhongMayDAO phongMayDAO = new PhongMayDAO();
 //        System.out.println(phongMayDAO.getAll());
 //        System.out.println(phongMayDAO.getById("PM8").getMaPhongMay());
+//        PhongMay phongMay= new PhongMay("PM11", "Tầng 9", "trống", "không có máy nào", null);
+//        System.out.println(phongMayDAO.insert(phongMay));
+//        phongMay.setGhiChu("Phòng trống chưa sử dụng");
+//        System.out.println(phongMayDAO.update(phongMay));
+//        System.out.println(phongMayDAO.delete(phongMay));
 //    }
+
+    @Override
+    public List find(Object... objects) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

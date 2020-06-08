@@ -28,5 +28,25 @@ public class GiaoVienService implements IService{
     public Object getById(String id) {
         return giaoVienDAO.getById(id);
     }
+
+    @Override
+    public int insert(Object object) {
+        return giaoVienDAO.insert(object);
+    }
+
+    @Override
+    public int update(Object object) {
+        return giaoVienDAO.update(object);
+    }
+
+    @Override
+    public int delete(Object object) {
+        return giaoVienDAO.delete(object);
+    }
+
+    @Override
+    public List find(Object... objects) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -26,4 +26,9 @@ public abstract class AbstractDAO {
     
     public abstract List getAll();
     public abstract Object getById(String id);
+    public abstract int insert(Object object);
+    public abstract int update(Object object);
+    public abstract int delete(Object object);
+    
+    public abstract List find(Object... objects);
 }

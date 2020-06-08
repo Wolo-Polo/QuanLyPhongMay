@@ -33,5 +33,25 @@ public class MayService implements IService{
     public List<May> getByMaPhongMay(String maPhongMay){
         return mayDAO.getByMaPhongMay(maPhongMay);
     }
+
+    @Override
+    public int insert(Object object) {
+        return mayDAO.insert(object);
+    }
+
+    @Override
+    public int update(Object object) {
+        return mayDAO.update(object);
+    }
+
+    @Override
+    public int delete(Object object) {
+        return mayDAO.delete(object);
+    }
+
+    @Override
+    public List find(Object... objects) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

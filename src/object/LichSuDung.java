@@ -5,7 +5,6 @@
  */
 package object;
 
-import java.util.Date;
 
 /**
  *
@@ -15,14 +14,14 @@ public class LichSuDung {
     private PhongMay phongMay;
     private GiaoVien giaoVien;
     private MonHoc monHoc;
-    private Date batDau;
-    private Date ketThuc;
+    private String batDau;
+    private String ketThuc;
     private String ghiChu;
 
     public LichSuDung() {
     }
 
-    public LichSuDung(PhongMay phongMay, GiaoVien giaoVien, MonHoc monHoc, Date batDau, Date ketThuc, String ghiChu) {
+    public LichSuDung(PhongMay phongMay, GiaoVien giaoVien, MonHoc monHoc, String batDau, String ketThuc, String ghiChu) {
         this.phongMay = phongMay;
         this.giaoVien = giaoVien;
         this.monHoc = monHoc;
@@ -55,19 +54,19 @@ public class LichSuDung {
         this.monHoc = monHoc;
     }
 
-    public Date getBatDau() {
+    public String getBatDau() {
         return batDau;
     }
 
-    public void setBatDau(Date batDau) {
+    public void setBatDau(String batDau) {
         this.batDau = batDau;
     }
 
-    public Date getKetThuc() {
+    public String getKetThuc() {
         return ketThuc;
     }
 
-    public void setKetThuc(Date ketThuc) {
+    public void setKetThuc(String ketThuc) {
         this.ketThuc = ketThuc;
     }
 

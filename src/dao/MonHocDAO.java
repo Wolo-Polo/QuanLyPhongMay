@@ -80,10 +80,74 @@ public class MonHocDAO extends AbstractDAO{
         
         return null;
     }
+
+    @Override
+    public int insert(Object object) {
+        try {
+            MonHoc monHoc= (MonHoc)object;
+            String sql="insert into monhoc values (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            preparedStatement.setString(1, monHoc.getMaMonHoc());
+            preparedStatement.setString(2, monHoc.getTenMonHoc());
+            preparedStatement.setString(3, monHoc.getTenPhanMem());
+            preparedStatement.setString(4, monHoc.getYeuCauCauHinh());
+            preparedStatement.setString(5, monHoc.getGhiChu());
+            
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MonHocDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public int delete(Object object) {
+        try {
+            MonHoc monHoc=(MonHoc) object;
+            String sql="delete from monhoc where mamonhoc=?";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            preparedStatement.setString(1, monHoc.getMaMonHoc());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MonHocDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public int update(Object object) {
+        try {
+            MonHoc monHoc= (MonHoc)object;
+            String sql="update monhoc set tenmonhoc=?, tenphanmem=?, yeucaucauhinh=?, ghichu=? where mamonhoc=?";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            preparedStatement.setString(5, monHoc.getMaMonHoc());
+            preparedStatement.setString(1, monHoc.getTenMonHoc());
+            preparedStatement.setString(2, monHoc.getTenPhanMem());
+            preparedStatement.setString(3, monHoc.getYeuCauCauHinh());
+            preparedStatement.setString(4, monHoc.getGhiChu());
+            
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MonHocDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
     
+        
 //    public static void main(String[] args) {
 //        MonHocDAO monHocDAO= new MonHocDAO();
 //        System.out.println(monHocDAO.getAll());
 //        System.out.println(monHocDAO.getById("MH01").getTenMonHoc());
+//        MonHoc mh= new MonHoc("MH03", "Công nghệ thực tại ảo", "VRML", "Trung bình", "bunus thêm Internet Explorer");
+//        System.out.println(monHocDAO.insert(mh));
+//        mh.setGhiChu("Cần thêm Internet Explorer");
+//        System.out.println(monHocDAO.update(mh));
+//        System.out.println(monHocDAO.delete(mh));
+//        
 //    }
+
+    @Override
+    public List find(Object... objects) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

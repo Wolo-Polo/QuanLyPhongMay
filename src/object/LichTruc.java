@@ -13,13 +13,13 @@ import java.util.Date;
  */
 public class LichTruc {
     private GiaoVien giaoVien;
-    private Date ngayTruc;
+    private String ngayTruc;
     private String ghiChu;
 
     public LichTruc() {
     }
 
-    public LichTruc(GiaoVien giaoVien, Date ngayTruc, String ghiChu) {
+    public LichTruc(GiaoVien giaoVien, String ngayTruc, String ghiChu) {
         this.giaoVien = giaoVien;
         this.ngayTruc = ngayTruc;
         this.ghiChu = ghiChu;
@@ -33,11 +33,11 @@ public class LichTruc {
         this.giaoVien = giaoVien;
     }
 
-    public Date getNgayTruc() {
+    public String getNgayTruc() {
         return ngayTruc;
     }
 
-    public void setNgayTruc(Date ngayTruc) {
+    public void setNgayTruc(String ngayTruc) {
         this.ngayTruc = ngayTruc;
     }
 

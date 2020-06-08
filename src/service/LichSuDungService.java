@@ -29,6 +29,26 @@ public class LichSuDungService implements IService{
     public LichSuDung getById(String id) {
         return lichSuDungDAO.getById(id);
     }
+
+    @Override
+    public int insert(Object object) {
+        return lichSuDungDAO.insert(object);
+    }
+
+    @Override
+    public int update(Object object) {
+        return lichSuDungDAO.update(object);
+    }
+
+    @Override
+    public int delete(Object object) {
+        return lichSuDungDAO.delete(object);
+    }
+
+    @Override
+    public List find(Object... objects) {
+        return lichSuDungDAO.find(objects);
+    }
     
     
 }
