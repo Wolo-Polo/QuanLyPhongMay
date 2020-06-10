@@ -7,6 +7,7 @@ package service;
 
 import dao.GiaoVienDAO;
 import java.util.List;
+import object.GiaoVien;
 
 /**
  *
@@ -20,12 +21,12 @@ public class GiaoVienService implements IService{
     }
     
     @Override
-    public List getAll() {
+    public List<GiaoVien> getAll() {
         return giaoVienDAO.getAll();
     }
 
     @Override
-    public Object getById(String id) {
+    public GiaoVien getById(String id) {
         return giaoVienDAO.getById(id);
     }
 

@@ -20,7 +20,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn=DriverManager.getConnection(DBConfig.URL, DBConfig.USER, DBConfig.PASS);
-            System.out.println("Ket noi den CSDL thanh cong!");
+            //System.out.println("Ket noi den CSDL thanh cong!");
             return conn;
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);

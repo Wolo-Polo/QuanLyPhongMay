@@ -7,6 +7,7 @@ package service;
 
 import dao.PhongMayDAO;
 import java.util.List;
+import object.PhongMay;
 
 /**
  *
@@ -20,18 +21,18 @@ public class PhongMayService implements IService{
     }
 
     @Override
-    public List getAll() {
+    public List<PhongMay> getAll() {
         return phongMayDAO.getAll();
     }
 
     @Override
-    public Object getById(String id) {
+    public PhongMay getById(String id) {
         return phongMayDAO.getById(id);
     }
 
     @Override
     public int insert(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
     @Override

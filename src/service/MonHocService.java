@@ -7,6 +7,7 @@ package service;
 
 import dao.MonHocDAO;
 import java.util.List;
+import object.MonHoc;
 
 /**
  *
@@ -20,12 +21,12 @@ public class MonHocService implements IService{
     }
     
     @Override
-    public List getAll() {
+    public List<MonHoc> getAll() {
         return monHocDAO.getAll();
     }
 
     @Override
-    public Object getById(String id) {
+    public MonHoc getById(String id) {
         return monHocDAO.getById(id);
     }
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import object.GiaoVien;
 import object.LichTruc;
 
 /**
@@ -121,8 +122,32 @@ public class LichTrucDAO extends AbstractDAO{
 //    }
 
     @Override
-    public List find(Object... objects) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<LichTruc> find(Object... objects) {
+        try {
+            String sql="select * from lichtruc where 1=1 ";
+            for(Object i: objects){
+                if(i instanceof GiaoVien){
+                    sql+="and magiaovien='"+((GiaoVien) i).getMaGiaoVien()+"' ";
+                }else if(i instanceof String){
+                    sql+="and ngaytruc='"+i+"' ";
+                }
+            }
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            ResultSet rs=preparedStatement.executeQuery();
+            List<LichTruc> listLichTruc= new ArrayList<>();
+            while(rs.next()){
+                LichTruc lichTruc= new LichTruc();
+                lichTruc.setGiaoVien(new GiaoVienDAO(connection).getById(rs.getString("magiaovien")));
+                lichTruc.setNgayTruc(rs.getString("ngaytruc"));
+                lichTruc.setGhiChu(rs.getString("ghichu"));
+                
+                listLichTruc.add(lichTruc);
+            }
+            return listLichTruc;
+        } catch (SQLException ex) {
+            Logger.getLogger(LichTrucDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

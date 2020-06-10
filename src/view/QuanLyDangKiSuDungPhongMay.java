@@ -9,12 +9,14 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import object.GiaoVien;
 import object.LichSuDung;
 import object.MonHoc;
 import object.PhongMay;
+import service.GiaoVienService;
 import service.LichSuDungService;
+import service.MonHocService;
+import service.PhongMayService;
 
 /**
  *
@@ -30,7 +32,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
      */
     public QuanLyDangKiSuDungPhongMay() {
         initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);// cho full man hinh
         lichSuDungService = new LichSuDungService();
         tableModel = new DefaultTableModel() {//khong cho sua bang
             @Override
@@ -42,12 +44,11 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
 
         jTable1.setModel(tableModel);
         tableModel.setColumnIdentifiers(new Object[]{"Mã phòng", "Vị trí", "Mã giáo viên", "Tên giáo viên", "Mã môn học", "Tên môn hoc", "Bắt đầu", "Kết thúc", "Ghi chú"});
-        List<LichSuDung> lichSuDungs = lichSuDungService.getAll();
-        hienThi(lichSuDungs);
+        hienThi(lichSuDungService.getAll());
 
-        //set các item cho combobox
-        for (LichSuDung i : lichSuDungs) {
-            String phong = i.getPhongMay().getMaPhongMay();
+        //set các item cho combobox       
+        for (PhongMay i : (new PhongMayService()).getAll()) {
+            String phong = i.getMaPhongMay();
             boolean ktraPhong = false;
             for (int j = 0; j < cbbMaPhong.getItemCount(); j++) {
                 if (phong.equalsIgnoreCase(cbbMaPhong.getItemAt(j))) {
@@ -60,9 +61,10 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
                 cbbMaPhongCu.addItem(phong);
                 cbbMaPhongMoi.addItem(phong);
             }
-
-            //----
-            String gv = i.getGiaoVien().getMaGiaoVien();
+        }
+        //----
+        for (GiaoVien i : (new GiaoVienService()).getAll()) {
+            String gv = i.getMaGiaoVien();
             boolean ktraGV = false;
             for (int j = 0; j < cbbMaGV.getItemCount(); j++) {
                 if (gv.equalsIgnoreCase(cbbMaGV.getItemAt(j))) {
@@ -72,17 +74,18 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             }
             if (!ktraGV) {
                 cbbMaGV.addItem(gv);
-                cbbTenGV.addItem(i.getGiaoVien().getTenGiaoVien());
+                cbbTenGV.addItem(i.getTenGiaoVien());
 
                 cbbMaGVCu.addItem(gv);
-                cbbTenGVCu.addItem(i.getGiaoVien().getTenGiaoVien());
+                cbbTenGVCu.addItem(i.getTenGiaoVien());
 
                 cbbMaGVMoi.addItem(gv);
-                cbbTenGVMoi.addItem(i.getGiaoVien().getTenGiaoVien());
+                cbbTenGVMoi.addItem(i.getTenGiaoVien());
             }
-
-            //----
-            String mh = i.getMonHoc().getMaMonHoc();
+        }
+        //----
+        for (MonHoc i : (new MonHocService()).getAll()) {
+            String mh = i.getMaMonHoc();
             boolean ktraMH = false;
             for (int j = 0; j < cbbMaMH.getItemCount(); j++) {
                 if (mh.equalsIgnoreCase(cbbMaMH.getItemAt(j))) {
@@ -92,13 +95,13 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             }
             if (!ktraMH) {
                 cbbMaMH.addItem(mh);
-                cbbTenMH.addItem(i.getMonHoc().getTenMonHoc());
+                cbbTenMH.addItem(i.getTenMonHoc());
 
                 cbbMaMHCu.addItem(mh);
-                cbbTenMHCu.addItem(i.getMonHoc().getTenMonHoc());
+                cbbTenMHCu.addItem(i.getTenMonHoc());
 
                 cbbMaMHMoi.addItem(mh);
-                cbbTenMHMoi.addItem(i.getMonHoc().getTenMonHoc());
+                cbbTenMHMoi.addItem(i.getTenMonHoc());
             }
 
         }
@@ -148,28 +151,19 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             int i = cbbTenMHMoi.getSelectedIndex();
             cbbMaMHMoi.setSelectedIndex(i);
         });
+
+        //cho frame ra giữa màn hình
+        jFrame1.setLocationRelativeTo(null);
     }
 
     public void hienThi(List<LichSuDung> listLichSuDung) {
         tableModel.setRowCount(0);
-//        jComboBox1.removeAllItems();
         for (LichSuDung i : listLichSuDung) {
             tableModel.addRow(new Object[]{i.getPhongMay().getMaPhongMay(), i.getPhongMay().getViTri(),
                 i.getGiaoVien().getMaGiaoVien(), i.getGiaoVien().getTenGiaoVien(),
                 i.getMonHoc().getMaMonHoc(), i.getMonHoc().getTenMonHoc(),
                 i.getBatDau(), i.getKetThuc(), i.getGhiChu()});
-
-//            String s=i.getPhongMay().getMaPhongMay();
-//            boolean ktra=false;
-//            for(int j=0; j<jComboBox1.getItemCount(); j++){
-//                if(s.equalsIgnoreCase(jComboBox1.getItemAt(j))){
-//                    ktra=true;
-//                    break;
-//                }
-//            }
-//            if(!ktra) jComboBox1.addItem(s);
         }
-//        jComboBox1.addItem("");
     }
 
     /**
@@ -908,16 +902,16 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        TableModel tb = jTable1.getModel();
+       
         int row = jTable1.getSelectedRow();
-        cbbMaPhong.setSelectedItem(tb.getValueAt(row, 0));
-        cbbMaGV.setSelectedItem((String) tb.getValueAt(row, 2));
+        cbbMaPhong.setSelectedItem(jTable1.getValueAt(row, 0));
+        cbbMaGV.setSelectedItem((String) jTable1.getValueAt(row, 2));
         //jComboBox4.setSelectedItem((String) tb.getValueAt(row, 3));
-        cbbMaMH.setSelectedItem((String) tb.getValueAt(row, 4));
+        cbbMaMH.setSelectedItem((String) jTable1.getValueAt(row, 4));
         //jComboBox5.setSelectedItem((String) tb.getValueAt(row, 5));
-        txtBatDau.setText((String) tb.getValueAt(row, 6));
-        txtKetThuc.setText((String) tb.getValueAt(row, 7));
-        txtAreaGhichu.setText((String) tb.getValueAt(row, 8));
+        txtBatDau.setText((String) jTable1.getValueAt(row, 6));
+        txtKetThuc.setText((String) jTable1.getValueAt(row, 7));
+        txtAreaGhichu.setText((String) jTable1.getValueAt(row, 8));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnDangKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKiActionPerformed
@@ -1030,21 +1024,20 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             lichSuDung.setKetThuc(txtKetThucMoi.getText());
             lichSuDung.setGhiChu(txtAreaGhiChuMoi.getText());
             int ktraThem = lichSuDungService.insert(lichSuDung);
-            
-            if(ktraXoa==0 && ktraThem==0){
+
+            if (ktraXoa == 0 && ktraThem == 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại");
-            }else if(ktraXoa!=0 && ktraThem==0){
+            } else if (ktraXoa != 0 && ktraThem == 0) {
                 JOptionPane.showMessageDialog(this, "Đã xóa bản ghi cũ nhưng bản ghi mới thêm vào đã tồn tại hoặc sai sót!\n"
                         + "Vui lòng quay lại và thêm mới lịch đăng kí phù hợp!");
-                
-            }else if(ktraXoa==0 && ktraThem!=0){
+
+            } else if (ktraXoa == 0 && ktraThem != 0) {
                 JOptionPane.showMessageDialog(this, "Xóa bản ghi cũ không thành công vì có thể nó đang được sử dụng!\n"
                         + "Bản ghi mới cập nhật sẽ được thêm mới vào lịch đăng kí!");
-            }else if(ktraXoa!=0 && ktraThem!=0){
+            } else if (ktraXoa != 0 && ktraThem != 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
             }
-            
-            
+
             jFrame1.setVisible(false);
             this.setVisible(true);
             btnLamMoiActionPerformed(evt);

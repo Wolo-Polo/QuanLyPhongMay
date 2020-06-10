@@ -32,7 +32,7 @@ public class LichTrucService implements IService{
 
     @Override
     public int insert(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lichTrucDAO.insert(object);
     }
 
     @Override
@@ -42,12 +42,12 @@ public class LichTrucService implements IService{
 
     @Override
     public int delete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lichTrucDAO.delete(object);
     }
 
     @Override
-    public List find(Object... objects) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<LichTruc> find(Object... objects) {
+        return lichTrucDAO.find(objects);
     }
     
     
