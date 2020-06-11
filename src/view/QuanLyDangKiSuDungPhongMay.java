@@ -116,7 +116,29 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
         cbbTenGV.setSelectedItem("");
         cbbTenMH.addItem("");
         cbbTenMH.setSelectedItem("");
+        
+        cbbMaPhongCu.addItem("");
+        cbbMaPhongCu.setSelectedItem("");
+        cbbMaGVCu.addItem("");
+        cbbMaGVCu.setSelectedItem("");
+        cbbMaMHCu.addItem("");
+        cbbMaMHCu.setSelectedItem("");
+        cbbTenGVCu.addItem("");
+        cbbTenGVCu.setSelectedItem("");
+        cbbTenMHCu.addItem("");
+        cbbTenMHCu.setSelectedItem("");
 
+        cbbMaPhongMoi.addItem("");
+        cbbMaPhongMoi.setSelectedItem("");
+        cbbMaGVMoi.addItem("");
+        cbbMaGVMoi.setSelectedItem("");
+        cbbMaMHMoi.addItem("");
+        cbbMaMHMoi.setSelectedItem("");
+        cbbTenGVMoi.addItem("");
+        cbbTenGVMoi.setSelectedItem("");
+        cbbTenMHMoi.addItem("");
+        cbbTenMHMoi.setSelectedItem("");
+        
         //khởi tạo các ràng buộc chọn cho các combobox
         cbbMaGV.addActionListener((e) -> {
             int i = cbbMaGV.getSelectedIndex();
@@ -256,7 +278,6 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
         jFrame1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jFrame1.setMinimumSize(new java.awt.Dimension(610, 570));
         jFrame1.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-        jFrame1.setPreferredSize(new java.awt.Dimension(610, 570));
         jFrame1.setResizable(false);
         jFrame1.setType(java.awt.Window.Type.POPUP);
         jFrame1.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -605,7 +626,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(284, 284, 284))
+                .addGap(431, 431, 431))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -697,7 +718,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbbMaPhong, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                                         .addGap(3, 3, 3))
                                     .addComponent(cbbMaGV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbbMaMH, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -818,7 +839,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -826,14 +847,14 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
+                .addGap(257, 257, 257))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2)
                 .addGap(18, 18, 18)
                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -974,14 +995,9 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        jFrame1.setVisible(true);
-        this.setVisible(false);
-
         cbbMaPhongCu.setSelectedItem(cbbMaPhong.getSelectedItem());
         cbbMaGVCu.setSelectedItem(cbbMaGV.getSelectedItem());
-        cbbTenGVCu.setSelectedItem(cbbTenGV.getSelectedItem());
         cbbMaMHCu.setSelectedItem(cbbMaMH.getSelectedItem());
-        cbbTenMH.setSelectedItem(cbbMaMH.getSelectedItem());
         txtBatDauCu.setText(txtBatDau.getText());
         txtKetThucCu.setText(txtKetThuc.getText());
         txtAreaGhiChuCu.setText(txtAreaGhichu.getText());
@@ -992,6 +1008,9 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
         txtBatDauMoi.setText(txtBatDau.getText());
         txtKetThucMoi.setText(txtKetThuc.getText());
         txtAreaGhiChuMoi.setText(txtAreaGhichu.getText());
+        
+        jFrame1.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void jFrame1WindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowClosed
