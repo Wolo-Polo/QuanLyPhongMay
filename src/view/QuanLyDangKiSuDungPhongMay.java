@@ -611,8 +611,13 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý lịch đăng kí sử dụng phòng máy");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -1062,6 +1067,10 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             btnLamMoiActionPerformed(evt);
         }
     }//GEN-LAST:event_btnChinhSuaActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        new Home().setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

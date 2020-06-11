@@ -32,17 +32,17 @@ public class PhongMayService implements IService{
 
     @Override
     public int insert(Object object) {
-        return 0;
+        return phongMayDAO.insert(object);
     }
 
     @Override
     public int update(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return phongMayDAO.update(object);
     }
 
     @Override
     public int delete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return phongMayDAO.delete(object);
     }
 
     @Override

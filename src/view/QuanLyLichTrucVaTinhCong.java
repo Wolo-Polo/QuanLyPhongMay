@@ -405,8 +405,13 @@ public class QuanLyLichTrucVaTinhCong extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý lịch trực và tính công");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setText("Quản lý lịch trực và tính công");
@@ -755,11 +760,11 @@ public class QuanLyLichTrucVaTinhCong extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại");
             } else if (ktraXoa != 0 && ktraThem == 0) {
                 JOptionPane.showMessageDialog(this, "Đã xóa bản ghi cũ nhưng bản ghi mới thêm vào đã tồn tại hoặc sai sót!\n"
-                        + "Vui lòng quay lại và thêm mới lịch đăng kí phù hợp!");
+                        + "Vui lòng quay lại và thêm mới lịch trực phù hợp!");
 
             } else if (ktraXoa == 0 && ktraThem != 0) {
                 JOptionPane.showMessageDialog(this, "Xóa bản ghi cũ không thành công vì có thể nó đang được sử dụng!\n"
-                        + "Bản ghi mới cập nhật sẽ được thêm mới vào lịch đăng kí!");
+                        + "Bản ghi mới cập nhật sẽ được thêm mới vào lịch trực kí!");
             } else if (ktraXoa != 0 && ktraThem != 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
             }
@@ -780,6 +785,10 @@ public class QuanLyLichTrucVaTinhCong extends javax.swing.JFrame {
         jFrame1.setVisible(false);
         this.setVisible(true);
     }//GEN-LAST:event_jFrame1WindowClosed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        new Home().setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

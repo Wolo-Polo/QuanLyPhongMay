@@ -14,7 +14,7 @@ import object.May;
  * @author Truong
  */
 public class QuanLyMay extends javax.swing.JFrame {
-
+    private QuanLyPhongMay quanLyPhongMay;
     /**
      * Creates new form QuanLyMay
      */
@@ -22,6 +22,12 @@ public class QuanLyMay extends javax.swing.JFrame {
         initComponents();
     }
 
+    public QuanLyMay(QuanLyPhongMay quanLyPhongMay) {
+        this();
+        this.quanLyPhongMay = quanLyPhongMay;
+        this.quanLyPhongMay.setVisible(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,8 +64,13 @@ public class QuanLyMay extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý máy");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 51));
 
@@ -291,7 +302,6 @@ public class QuanLyMay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new Quanlyphongmay().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -304,6 +314,10 @@ public class QuanLyMay extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        quanLyPhongMay.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
