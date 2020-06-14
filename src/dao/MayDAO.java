@@ -171,6 +171,33 @@ public class MayDAO extends AbstractDAO {
 
     @Override
     public List find(Object... objects) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql= "select * from may where 1=1 ";
+            for(int i=0; i<objects.length; i++){
+                if(i==0){
+                    if(!((String) objects[i]).equalsIgnoreCase("")) sql+="and mamay='"+(String) objects[i]+"' ";
+                }else if(i==1){
+                    if(!((String) objects[i]).equalsIgnoreCase("")) sql+="and cauhinh='"+(String) objects[i]+"' ";
+                }else if(i==2){
+                    if(!((String) objects[i]).equalsIgnoreCase("")) sql+="and tinhtrang='"+(String) objects[i]+"' ";
+                }else if(i==3){
+                    if(!((String) objects[i]).equalsIgnoreCase("")) sql+="and maphongmay='"+(String) objects[i]+"' ";
+                }
+            }
+            
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            ResultSet rs= preparedStatement.executeQuery();
+            List<May> listMay= new ArrayList<>();
+            while(rs.next()){
+                May may= new May(rs.getString("mamay"), rs.getString("cauhinh"),//
+                        rs.getString("tinhtrang"), rs.getString("maphongmay"), rs.getString("ghichu"));
+                
+                listMay.add(may);
+            }
+            return listMay;
+        } catch (SQLException ex) {
+            Logger.getLogger(MayDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return null;
     }
 }

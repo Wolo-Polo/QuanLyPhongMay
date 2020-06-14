@@ -59,7 +59,13 @@ public class QuanLyMay extends javax.swing.JFrame {
         cbbMaPhong.setSelectedItem(quanLyPhongMay.getMaPhongMay());
 
         //khởi tạo bảng dữ liêu
-        defaultTableModel = new DefaultTableModel();
+        defaultTableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
         jTable1.setModel(defaultTableModel);
         defaultTableModel.setColumnIdentifiers(new Object[]{"Mã máy", "Cấu hình", "Tình trạng", "Phòng", "Ghi chú"});
 
@@ -163,6 +169,11 @@ public class QuanLyMay extends javax.swing.JFrame {
         });
 
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +190,11 @@ public class QuanLyMay extends javax.swing.JFrame {
         });
 
         btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -370,7 +386,21 @@ public class QuanLyMay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        May may = new May();
+        may.setMaMay(txtMaMay.getText());
+        int choose = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa!\n"
+                + "Mọi thay đổi sẽ không được hoàn tác!");
+        if (choose == JOptionPane.OK_OPTION) {
+            int kq = mayService.delete(may);
+            if (kq == 0) {
+                JOptionPane.showMessageDialog(this, "Xóa không thành công!\n"
+                        + "Hãy kiểm tra dữ liệu trước khi xóa!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                hienThi(mayService.getAll());
+            }
+        }
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -404,9 +434,37 @@ public class QuanLyMay extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Thêm thành công!");
             }
         }
-        
+
         btnLamMoiActionPerformed(evt);
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+
+        if (checkData()) {
+            May may = new May();
+            may.setMaMay(txtMaMay.getText());
+            may.setCauHinh((String) cbbCauHinh.getSelectedItem());
+            may.setTinhTrang((String) cbbTinhTrang.getSelectedItem());
+            may.setMaPhongMay((String) cbbMaPhong.getSelectedItem());
+            may.setGhiChu(txtAreaGhiChu.getText());
+            int kq=mayService.update(may);
+            if(kq==0){
+                JOptionPane.showMessageDialog(this, "Cập nhật lỗi!\n"
+                        + "Hãy xem lại dữ liệu nhập vào!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+                hienThi(mayService.getAll());
+            }
+        }
+
+
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        List<May> list=mayService.find(txtMaMay.getText(), (String)cbbCauHinh.getSelectedItem(), (String) cbbTinhTrang.getSelectedItem(),
+            (String) cbbMaPhong.getSelectedItem(), txtAreaGhiChu.getText());
+        hienThi(list);
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -438,17 +496,17 @@ public class QuanLyMay extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean checkData() {
-        if(txtMaMay.getText().equals("")){
+        if (txtMaMay.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Mã máy không được để trống!\n"
                     + "Quy tắc đặt tên mã máy: số hiệu máy+mã phòng");
             return false;
-        }else if(((String)cbbCauHinh.getSelectedItem()).equalsIgnoreCase("")){
+        } else if (((String) cbbCauHinh.getSelectedItem()).equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Cấu hình máy không được để trống!");
             return false;
-        }else if(((String) cbbTinhTrang.getSelectedItem()).equalsIgnoreCase("")){
+        } else if (((String) cbbTinhTrang.getSelectedItem()).equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Tình trạng máy không được để trống!");
             return false;
-        }else if(((String) cbbMaPhong.getSelectedItem()).equalsIgnoreCase("")){
+        } else if (((String) cbbMaPhong.getSelectedItem()).equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Mã phòng không được để trống!");
             return false;
         }

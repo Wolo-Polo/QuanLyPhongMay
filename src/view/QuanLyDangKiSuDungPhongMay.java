@@ -953,8 +953,9 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Thêm không thành công!\n Hãy xem lại dữ liệu được thêm vào!");
         } else {
             JOptionPane.showMessageDialog(this, "Thêm thành công!");
+            hienThi(lichSuDungService.getAll());
         }
-        hienThi(lichSuDungService.getAll());
+        
     }//GEN-LAST:event_btnDangKiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -970,10 +971,11 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Xóa không thành công!");
             } else {
                 JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                hienThi(lichSuDungService.getAll());
             }
         }
 
-        hienThi(lichSuDungService.getAll());
+        
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
