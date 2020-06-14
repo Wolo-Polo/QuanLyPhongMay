@@ -49,6 +49,11 @@ public class LichTrucService implements IService{
     public List<LichTruc> find(Object... objects) {
         return lichTrucDAO.find(objects);
     }
+
+    @Override
+    public int count(Object... object) {
+        return lichTrucDAO.count(object);
+    }
     
     
     

@@ -53,5 +53,10 @@ public class MayService implements IService{
     public List find(Object... objects) {
         return mayDAO.find(objects);
     }
+
+    @Override
+    public int count(Object... object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

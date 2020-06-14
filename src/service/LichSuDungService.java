@@ -49,6 +49,11 @@ public class LichSuDungService implements IService{
     public List find(Object... objects) {
         return lichSuDungDAO.find(objects);
     }
+
+    @Override
+    public int count(Object... object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

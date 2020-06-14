@@ -149,5 +149,22 @@ public class LichTrucDAO extends AbstractDAO{
         }
         return null;
     }
+
+    @Override
+    public int count(Object... objects) {
+        try {
+            String sql="select count(magiaovien) as cong from lichtruc where magiaovien=? and month(ngaytruc)=? and year(ngaytruc)=?";
+            PreparedStatement preparedStatement= connection.prepareStatement(sql);
+            for(int i=0; i<objects.length; i++){
+                preparedStatement.setString(i+1, (String) objects[i]);
+            }
+            ResultSet rs= preparedStatement.executeQuery();
+            if(rs.next()) return rs.getInt("cong");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(LichTrucDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
     
 }

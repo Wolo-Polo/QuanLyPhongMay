@@ -31,4 +31,5 @@ public abstract class AbstractDAO {
     public abstract int delete(Object object);
     
     public abstract List find(Object... objects);
+    public abstract int count(Object... objects);
 }

@@ -20,4 +20,5 @@ public interface IService {
     public int delete(Object object);
     
     public List find(Object... objects);
+    public int count(Object... object);
 }

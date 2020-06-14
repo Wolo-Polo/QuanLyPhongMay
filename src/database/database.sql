@@ -89,4 +89,7 @@ insert into monhoc values ('MH01', 'Java', 'NetBeans', N'Trung bình', ''),
 insert lichsudung values ('PM8', 'GV01', 'MH01', '2020-06-02 07:00:00', '2020-06-02 11:00:00', 'Buổi sử dụng phòng máy đầu tiên');
 insert lichsudung values ('PM7', 'GV02', 'MH02', '2020-06-02 13:00:00', '2020-06-02 16:00:00', 'Buổi sử dụng phòng máy đầu tiên');
 
-    
+CREATE TRIGGER `trigger_delete_phongmay_update_may` BEFORE DELETE ON `phongmay`
+ FOR EACH ROW UPDATE may set maphongmay='PM0' WHERE maphongmay=OLD.maphongmay
+CREATE TRIGGER `trigger_delete_phongmay_delete_lichsudung` BEFORE DELETE ON `phongmay`
+ FOR EACH ROW DELETE from lichsudung WHERE maphongmay=OLD.maphongmay
