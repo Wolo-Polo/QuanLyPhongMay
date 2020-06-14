@@ -911,7 +911,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
-        new Home().setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 

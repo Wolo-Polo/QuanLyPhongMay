@@ -38,8 +38,11 @@ public class MayDAO extends AbstractDAO {
             List<May> dsMay = new ArrayList<>();
             while (rs.next()) {
                 May temp = new May();
-                temp.setMaMay(rs.getString(1));
-
+                temp.setMaMay(rs.getString("mamay"));
+                temp.setCauHinh(rs.getString("cauhinh"));
+                temp.setTinhTrang(rs.getString("tinhtrang"));
+                temp.setMaPhongMay(rs.getString("maphongmay"));
+                temp.setGhiChu(rs.getString("ghichu"));
                 dsMay.add(temp);
             }
             return dsMay;
@@ -84,8 +87,11 @@ public class MayDAO extends AbstractDAO {
             List<May> dsMay = new ArrayList<>();
             while (rs.next()) {
                 May temp = new May();
-                temp.setMaMay(rs.getString(1));
-
+                temp.setMaMay(rs.getString("mamay"));
+                temp.setCauHinh(rs.getString("cauhinh"));
+                temp.setTinhTrang(rs.getString("tinhtrang"));
+                temp.setMaPhongMay(rs.getString("maphongmay"));
+                temp.setGhiChu(rs.getString("ghichu"));
                 dsMay.add(temp);
             }
             return dsMay;

@@ -7,6 +7,7 @@ package view;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import object.PhongMay;
 import service.PhongMayService;
@@ -318,7 +319,7 @@ public class QuanLyPhongMay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChiTietPhongMayActionPerformed
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
-        new Home().setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
@@ -407,6 +408,10 @@ public class QuanLyPhongMay extends javax.swing.JFrame {
         }
         
         return true;
+    }
+
+    public String getMaPhongMay() {
+        return txtMaPhongMay.getText();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
