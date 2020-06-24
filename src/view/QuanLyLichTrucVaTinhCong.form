@@ -954,7 +954,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnThem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Th&#xea;m m&#x1edb;i l&#x1ecb;ch tr&#x1ef1;c"/>
+                <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng k&#xed; l&#x1ecb;ch tr&#x1ef1;c"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>

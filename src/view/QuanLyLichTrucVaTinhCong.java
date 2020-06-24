@@ -5,14 +5,13 @@
  */
 package view;
 
-import java.sql.Date;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import object.GiaoVien;
 import object.LichTruc;
+import object.TaiKhoan;
 import service.GiaoVienService;
 import service.LichTrucService;
 
@@ -30,6 +29,16 @@ public class QuanLyLichTrucVaTinhCong extends javax.swing.JFrame {
      */
     public QuanLyLichTrucVaTinhCong() {
         initComponents();
+
+        TaiKhoan tk = DangNhap.getTaiKhoan();
+        if (tk.getLoaiTaiKhoan().equals("ADMIN")) {
+            //full quyền
+        } else if (tk.getLoaiTaiKhoan().equals("USER")) {
+            btnThem.setEnabled(false);
+            btnSua.setEnabled(false);
+            btnXoa.setEnabled(false);
+        }
+
         lichTrucService = new LichTrucService();
         defaultTableModel = new DefaultTableModel() {
             @Override
@@ -648,7 +657,7 @@ public class QuanLyLichTrucVaTinhCong extends javax.swing.JFrame {
         txtAreaGhiChu.setRows(5);
         jScrollPane1.setViewportView(txtAreaGhiChu);
 
-        btnThem.setText("Thêm mới lịch trực");
+        btnThem.setText("Đăng kí lịch trực");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -948,20 +957,28 @@ public class QuanLyLichTrucVaTinhCong extends javax.swing.JFrame {
     private void btnTinhCongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhCongActionPerformed
         if (((String) cbbMaGV.getSelectedItem()).equals("")) {
             JOptionPane.showMessageDialog(this, "Không thể tính công nếu mã giáo viên trống!");
+            
         } else {
+            TaiKhoan tk = DangNhap.getTaiKhoan();
+            if (tk.getLoaiTaiKhoan().equals("USER")) {
+                if (!tk.getMaGiaoVien().equals((String) cbbMaGV.getSelectedItem())) {
+                    JOptionPane.showMessageDialog(this, "Bạn không có quyền chỉnh tính công của người khác!");
+                    return;
+                }
+            }
             this.setVisible(false);
             jFrame2.setVisible(true);
             txtCongMaGiaoVien.setText((String) cbbMaGV.getSelectedItem());
             txtCongTenGiaoVien.setText((String) cbbTenGV.getSelectedItem());
             labelCong.setText("Công=?");
-            Calendar calendar= Calendar.getInstance();
-            txtThang.setText(String.valueOf(calendar.get(Calendar.MONTH)+1));
+            Calendar calendar = Calendar.getInstance();
+            txtThang.setText(String.valueOf(calendar.get(Calendar.MONTH) + 1));
             txtNam.setText(String.valueOf(calendar.get(Calendar.YEAR)));
         }
     }//GEN-LAST:event_btnTinhCongActionPerformed
 
     private void btnTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTinhActionPerformed
-        
+
         String thang = txtThang.getText();
         String nam = txtNam.getText();
         try {

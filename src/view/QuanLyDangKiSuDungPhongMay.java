@@ -13,6 +13,7 @@ import object.GiaoVien;
 import object.LichSuDung;
 import object.MonHoc;
 import object.PhongMay;
+import object.TaiKhoan;
 import service.GiaoVienService;
 import service.LichSuDungService;
 import service.MonHocService;
@@ -116,7 +117,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
         cbbTenGV.setSelectedItem("");
         cbbTenMH.addItem("");
         cbbTenMH.setSelectedItem("");
-        
+
         cbbMaPhongCu.addItem("");
         cbbMaPhongCu.setSelectedItem("");
         cbbMaGVCu.addItem("");
@@ -138,7 +139,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
         cbbTenGVMoi.setSelectedItem("");
         cbbTenMHMoi.addItem("");
         cbbTenMHMoi.setSelectedItem("");
-        
+
         //khởi tạo các ràng buộc chọn cho các combobox
         cbbMaGV.addActionListener((e) -> {
             int i = cbbMaGV.getSelectedIndex();
@@ -911,7 +912,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
-        
+
         this.dispose();
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
@@ -928,7 +929,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+
         int row = jTable1.getSelectedRow();
         cbbMaPhong.setSelectedItem(jTable1.getValueAt(row, 0));
         cbbMaGV.setSelectedItem((String) jTable1.getValueAt(row, 2));
@@ -955,10 +956,18 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Thêm thành công!");
             hienThi(lichSuDungService.getAll());
         }
-        
+
     }//GEN-LAST:event_btnDangKiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        TaiKhoan tk = DangNhap.getTaiKhoan();
+        if (tk.getLoaiTaiKhoan().equals("USER")) {
+            if (!tk.getMaGiaoVien().equals((String) cbbMaGV.getSelectedItem())) {
+                JOptionPane.showMessageDialog(this, "Bạn không có quyền xóa lịch trực của người khác!");
+                return;
+            }
+        }
+
         LichSuDung lichSuDung = new LichSuDung();
         lichSuDung.setPhongMay(new PhongMay((String) cbbMaPhong.getSelectedItem(), "", "", "", null));
         lichSuDung.setGiaoVien(new GiaoVien((String) cbbMaGV.getSelectedItem(), "", "", 0, ""));
@@ -975,7 +984,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
             }
         }
 
-        
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -1002,6 +1011,14 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        TaiKhoan tk = DangNhap.getTaiKhoan();
+        if (tk.getLoaiTaiKhoan().equals("USER")) {
+            if (!tk.getMaGiaoVien().equals((String) cbbMaGV.getSelectedItem())) {
+                JOptionPane.showMessageDialog(this, "Bạn không có quyền xóa lịch trực của người khác!");
+                return;
+            }
+        }
+
         cbbMaPhongCu.setSelectedItem(cbbMaPhong.getSelectedItem());
         cbbMaGVCu.setSelectedItem(cbbMaGV.getSelectedItem());
         cbbMaMHCu.setSelectedItem(cbbMaMH.getSelectedItem());
@@ -1015,7 +1032,7 @@ public class QuanLyDangKiSuDungPhongMay extends javax.swing.JFrame {
         txtBatDauMoi.setText(txtBatDau.getText());
         txtKetThucMoi.setText(txtKetThuc.getText());
         txtAreaGhiChuMoi.setText(txtAreaGhichu.getText());
-        
+
         jFrame1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSuaActionPerformed
